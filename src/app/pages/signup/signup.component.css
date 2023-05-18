@@ -1,0 +1,23 @@
+#logo02{
+width: 15%;
+  height: 15%;
+}
+.full-width
+{
+    width: 100%;
+}
+
+.position{
+   
+ height: 650px;
+ width:300px ;
+ position: inherit;
+  top: 40px;
+  left: 23%;
+
+
+}
+.card{
+  background-color: rgb(20, 14, 7);
+  border-color: "red";
+}

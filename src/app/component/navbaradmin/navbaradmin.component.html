@@ -1,0 +1,18 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+     <mat-icon>menu_book</mat-icon>
+   </button>
+   <span>Exam Portal</span>
+   <span class="example-spacer"></span>
+   <a href="/login"
+   mat-icon-button class="button" aria-label="Example icon-button with heart icon">
+     Login
+   </a>
+    
+   <a href="/signup" mat-icon-button class="button" aria-label="Example icon-button with heart icon">
+     Register
+   </a>
+   
+   <button (click)="logout()" mat-raised-button type="submit" style="margin-left: 20px;"> logout</button>
+  
+ </mat-toolbar>

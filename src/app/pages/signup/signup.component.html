@@ -1,0 +1,71 @@
+<div class="container2">
+<div class="container1">
+<app-navbar></app-navbar>
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row" style="margin-top:5px;">
+            <div class="col-md-6 offset-md-3">
+                <div class="container text-center" id="logo1">
+                    <img src="../../../assets/Bitsflow.png" alt="" id="logo02">
+                </div>
+             <h2 class="text-center">Register Here</h2>
+                    <mat-card style=
+                    "border: 1px solid #ccc; ">
+                <form (ngSubmit)="formsubmit()" class="position">
+                   
+                        <mat-form-field class="full-width" appearance="outline">
+                          <mat-label>Username</mat-label>
+                          <input 
+                          required
+                          [(ngModel)]="user.username"
+                           matInput placeholder="Enter User name"
+                           name="username">
+                        </mat-form-field>
+                      
+                      
+                        <mat-form-field class="full-width" appearance="outline">
+                          <mat-label>FirstName</mat-label>
+                          <input required [(ngModel)]="user.firstname" matInput placeholder="Enter Your First Name" name="firstnamename">
+                          
+                        </mat-form-field>
+
+                          <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>LastName</mat-label>
+                            <input required [(ngModel)]="user.lastname" matInput placeholder="Enter Your Lastname" name="lastname">
+                           </mat-form-field>
+
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input  [(ngModel)]="user.useremail" matInput placeholder="Enter Email" type="email" name="useremail"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            </mat-form-field>
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input required [(ngModel)]="user.password" type="password" matInput placeholder="Enter Password" name="password">
+                                </mat-form-field>
+                            
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>ConfirmPassword</mat-label>
+                                    <input required [(ngModel)]="user.confirmpassword" type="password" matInput placeholder="Enter Password"  name="confirmpassword">
+                                </mat-form-field> 
+
+                               
+
+                                    <mat-form-field class="full-width" appearance="outline">
+                                        <mat-label>Contact No</mat-label>
+                                        <input required [(ngModel)]="user.phone" matInput placeholder="Enter Your Mobile Number" name="phone">
+                                        </mat-form-field>
+                                         
+                                        <div class="text-center">  <button mat-raised-button color="primary" type="submit"> Sign Up</button></div>
+                                        <br>
+                                       
+                                      
+                      
+                </form>
+                </mat-card>
+            
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

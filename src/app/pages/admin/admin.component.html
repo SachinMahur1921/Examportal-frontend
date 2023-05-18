@@ -1,0 +1,314 @@
+<app-navbaradmin></app-navbaradmin>
+      <html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+        <body>
+             <div class="container">
+            <div id="wrapper">
+                <div id="sidebar-wrapper">
+                    <aside id="sidebar">
+                        <ul id="sidemenu" class="sidebar-nav">
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-icon"><i class="fa fa-dashboard"></i></span>
+                                    <span class="sidebar-title">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse">
+                                    <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                                    <span class="sidebar-title" (click)="Showcard(1)">Student</span>
+                                    <b class="caret"></b>
+                                  </a>
+                               
+                            </li>
+                            <li>
+                                <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse">
+                                    <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                                    <span class="sidebar-title" (click)="Showcard1(2)">ExamSub</span>
+                                    <b class="caret"></b>
+                                  </a>
+                                
+                            </li>
+                            <li>
+                                <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse">
+                                    <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                                    <span class="sidebar-title" (click)="Showcard(3)">Exam Sets</span>
+                                    <b class="caret"></b>
+                                  </a>
+                            </li>
+                            <li>
+                                <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse">
+                                    <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                                    <span class="sidebar-title" (click)="Showcard3(4)">Results</span>
+                                    <b class="caret"></b>
+                                  </a>
+                            </li>   
+                        </ul>
+                    </aside>            
+                </div>
+                <main id="page-content-wrapper" role="main">
+                </main>
+            </div> 
+            
+  
+             <mat-card style="border: 2px solid rgb(202, 200, 231);" class="size">
+
+                <div class="card" *ngIf="currentCard === 1"  >
+                   
+                       <table class="table ">
+                        <thead> 
+                          <tr>  <th > username </th>
+                            <th >email</th>
+                            <th >phone</th>
+                            <th >password</th>
+                            <th > DeleteUser</th></tr>
+                         
+                        </thead>
+                       </table>
+                       
+                   
+                    <div class="student" *ngFor="let student of students" class="card-container">
+                        <h3 class="username"> {{student.username}} </h3>
+                         <h3 class="email">{{student.email}}</h3>
+                         <h3 class="phone">{{student.phone}}</h3>
+                         <h3 class="password">{{student.password}}</h3>
+                           <button type="button" (click)="deleteStudent(student)" mat-button class="button">Delete</button>
+                    
+
+                          </div>
+                  </div>
+                  <div class="card" *ngIf="currentCard === 4">
+                    <div class="student"   class="card-container">
+                    
+                        <table class="table ">
+                        <thead>
+                            <tr>
+                              <th scope="col">userName</th>
+                              <th scope="col">email</th>
+                              <th scope="col"> TotalQuestions</th>
+                             
+                              <th scope="col">Marks</th>
+                          </tr> 
+                       
+                           
+                          <tr  *ngFor="let result of results">
+                            <th scope="col">{{result.username}}</th>
+                            <th scope="col">{{result.email}}</th>
+                            <th scope="col">{{result.totalQuestions}}</th>
+                            
+                            <th scope="col">{{result.marks}}</th>
+                        </tr>
+                      </thead>
+                           
+                            
+                        
+                        </table>
+
+                        
+                         
+                     </div>
+                     </div>
+       
+
+                  <div class="card" *ngIf="currentCard === 2">
+                    <div class="student"   class="card-container">
+                    
+                        <table class="table table-dark">
+                        <thead>
+                            <tr>
+                              <th scope="col">subjectName</th>
+                              <th scope="col"> totalQuestions</th>
+                              <th scope="col">totalMarks</th>
+                              <th scope="col">delete</th>
+                              
+    
+                            </tr>
+                           
+                            
+                          </thead>
+                        </table>
+
+                        
+                         <button type="button" mat-button (click)="showForm ()"> Add</button>
+                     </div>
+
+                     <div class="student"  *ngFor="let card of subjects" class="card-container">
+                        <h3 class="username"> {{card.subjectName
+                        }} </h3>
+                         <h3 class="email">{{card.totalQuestions}}</h3>
+                         <h3 class="phone">{{card.totalMarks
+                        }}</h3>
+                           
+                        <button mat-button  class="delete" type="button" (click)="deleteSubject(card)" > Delete</button>
+                        
+                     </div>
+                     <div class="form-container" *ngIf="isFormVisible===true">
+                
+                        <form (ngSubmit)="AddSubject()" class="newposition">
+                          
+                              <input type="text" [(ngModel)]="Subject.subjectName" name="subjectName" placeholder="EnterSubjectName" >
+                             <button class="submit" type="submit" mat-button> Submit</button>
+                        </form>
+                      </div>
+                  </div>
+                  <div class="card" *ngIf="currentCard === 3">
+                       
+                    <div class="container " style="display: flex;margin-left: 40%;">
+                      
+                         <button mat-button type="button" (click)="set(1)" color="primary"> Set1</button>
+                         <br>
+                         <button mat-button  type="button" (click)="set(2)" color="primary"> Set2</button>
+                            
+                        
+                       
+
+                    </div>   
+
+                     
+
+                    <div class="set"  *ngIf="setData=== 1" >
+  
+                        <div class="exam  offset-1">
+                            <form>
+                                <h2>Question 1</h2>
+                                <p>Who is the Developer of Java</p>
+                                <label><input type="radio" name="q1" id="q1" value="A">A. Madrid</label><br>
+                                <label><input type="radio" name="q1" id="q1" value="B">B. Paris</label><br>
+                                <label><input type="radio" name="q1" id="q1" value="C">C. London</label><br>
+                                
+                                <h2>Question 2</h2>
+                                <p>java launched i n</p>
+                                <label><input type="radio" name="q2" id="q2" value="A">A. Venus</label><br>
+                                <label><input type="radio" name="q2" id="q2" value="B">B. Mars</label><br>
+                                <label><input type="radio" name="q2" id="q2" value="C">C. Jupiter</label><br>
+                                
+                                <h2>Question 3</h2>
+                                <p>What is the largest ocean in the world?</p>
+                                <label><input  type="radio" name="q3" id="q3" value="A">A. Pacific</label><br>
+                                <label><input type="radio" name="q3" id="q3" value="B">B. Atlantic</label><br>
+                                <label><input type="radio" name="q3" id="q3" value="C">C. Indian</label><br>
+                                <div class="button1">
+                               
+                            </div>
+                              </form> 
+                              </div>
+                </div>
+
+                <div class="set"  *ngIf="setData=== 2" >
+
+                 <div class="exam  offset-1">
+    <form>
+        <h2>Question 1</h2>
+        <p>What is the capital of France?</p>
+        <label><input type="radio" name="q1" id="q1" value="A">A. Madrid</label><br>
+        <label><input type="radio" name="q1" id="q1" value="B">B. Paris</label><br>
+        <label><input type="radio" name="q1" id="q1" value="C">C. London</label><br>
+        
+        <h2>Question 2</h2>
+        <p>What is the largest planet in our solar system?</p>
+        <label><input type="radio" name="q2" id="q2" value="A">A. Venus</label><br>
+        <label><input type="radio" name="q2" id="q2" value="B">B. Mars</label><br>
+        <label><input type="radio" name="q2" id="q2" value="C">C. Jupiter</label><br>
+        
+        <h2>Question 3</h2>
+        <p>What is the largest ocean in the world?</p>
+        <label><input  type="radio" name="q3" id="q3" value="A">A. Pacific</label><br>
+        <label><input type="radio" name="q3" id="q3" value="B">B. Atlantic</label><br>
+        <label><input type="radio" name="q3" id="q3" value="C">C. Indian</label><br>
+        <h2>Question 3</h2>
+        <p>What is the largest ocean in the world?</p>
+        <label><input  type="radio" name="q3" id="q3" value="A">A. Pacific</label><br>
+        <label><input type="radio" name="q3" id="q3" value="B">B. Atlantic</label><br>
+        <label><input type="radio" name="q3" id="q3" value="C">C. Indian</label><br>
+        
+      </form>  
+    </div>
+           </div>
+                </div>
+                 
+                </mat-card>
+              </div>
+     </body>
+     </html>
+
+
+     <!-- <div class="sidebar">
+        <button (click)="showCard(1)">Card 1</button>
+        <button (click)="showCard(2)">Card 2</button>
+      </div>
+      
+      <div class="card" *ngIf="currentCard === 1">
+        <h2>Card 1 Content</h2>
+        <p>This is the content for Card 1.</p>
+      </div>
+      
+      <div class="card" *ngIf="currentCard === 2">
+        <h2>Card 2 Content</h2>
+        <p>This is the content for Card 2.</p>
+      </div> -->
+ <!-- <html>
+   
+ <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  </head>
+
+  <body>
+ 
+<div class="bootstrap-wrapper">
+    <div class="container">
+
+       
+    <mat-card class=" card">
+       <h1 class="text-center mt"> Student</h1> 
+       
+     
+       <div class="ui compact menu size">
+        <div class="ui simple dropdown item ">
+          Dropdown
+          <i class="dropdown icon"></i> 
+          <div class="menu">
+            <mat-card style="border: 2px solid
+            black;">
+            <div class="container1">Choice 1</div>
+             
+                
+            </mat-card>
+            
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class=" card">
+        <h1 class="text-center mt"> Exam Subjects</h1>
+        <div class="ui compact menu size">
+            <div class="ui simple dropdown item ">
+              Dropdown
+              <i class="dropdown icon"></i> 
+              <div class="menu">
+                <mat-card style="border: 2px solid
+                black; " class="position">
+                <div class="container1">Choice 1</div>
+              
+                    
+                </mat-card>
+                
+              </div>
+            </div>
+          </div>
+     </mat-card>
+     <mat-card class=" card">
+        <h1 class="text-center mt"> Exam Sets</h1>
+     </mat-card>
+     <mat-card class=" card">
+        <h1 class="text-center mt"> Exam results</h1>
+     </mat-card>
+    </div>
+</div>
+</body>
+</html> -->

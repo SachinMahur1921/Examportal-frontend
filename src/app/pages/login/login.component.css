@@ -1,0 +1,18 @@
+#logo02{
+    width: 15%;
+      height: 15%;
+      margin-top: 10px;
+    }
+   .position{
+      
+    height: 270px;
+    position: inherit;
+   top: 30px;
+   }
+    
+   .matcard{
+    width: 320px;
+    position: relative;
+   
+    left:400px;
+   }
